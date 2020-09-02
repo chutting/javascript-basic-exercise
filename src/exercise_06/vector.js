@@ -13,4 +13,28 @@ export default class Vector {
   // class.
 
   // PLEASE DELETE THIS LINE AND ADD YOUR IMPLEMENTATION HERE
+  constructor(x, y) {
+    this._x = x;
+    this._y = y;
+  }
+
+  get x() {
+    return this._x;
+  }
+
+  get y() {
+    return this._y;
+  }
+
+  static plus(vector1, vector2) {
+    return new Vector(vector1._x + vector2._x, vector1._y + vector2._y);
+  }
+
+  static minus(vector1, vector2) {
+    return new Vector(vector1._x - vector2._x, vector1._y - vector2._y);
+  }
+
+  distance() {
+    return Math.sqrt((this._x ** 2) + (this._y ** 2));
+  }
 }
