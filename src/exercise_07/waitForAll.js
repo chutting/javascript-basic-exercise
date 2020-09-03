@@ -18,13 +18,15 @@ export default function waitForAll(...promises) {
   });
 
   let isAllPromiseResolve = true;
+  let completePromiseNum = 0;
 
   const promise = new Promise((resolve, reject) => {
-    promises.forEach((ele, index) => {
+    promises.forEach((ele) => {
       ele.catch(() => {
         isAllPromiseResolve = false;
-      }).then(() => {
-        if (index === promises.length - 1) {
+      }).finally(() => {
+        completePromiseNum += 1;
+        if (completePromiseNum === promises.length) {
           if (isAllPromiseResolve) {
             resolve();
           } else {
